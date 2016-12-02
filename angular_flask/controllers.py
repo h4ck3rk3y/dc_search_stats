@@ -19,6 +19,8 @@ from angular_flask.core import api_manager
 @app.route('/about')
 @app.route('/blog')
 @app.route('/search')
+@app.route('/user')
+@app.route('/user/<user_name>')
 def basic_pages(**kwargs):
     return make_response(open('angular_flask/templates/index.html').read())
 

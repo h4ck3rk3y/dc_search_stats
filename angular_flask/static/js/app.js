@@ -17,6 +17,10 @@ angular.module('AngularFlask', ['angularFlaskServices'])
 			templateUrl: 'static/partials/search.html',
 			controller: SearchController
 		})
+		.when('/user/:user',{
+			templateUrl: '/static/partials/user-list.html',
+			controller: UserController
+		})
 		.otherwise({
 			redirectTo: '/'
 		})
