@@ -41,13 +41,15 @@ def search():
 @app.route('/api/search/<user_name>')
 @app.route('/api/search/<user_name>/<limit>')
 def user_search(user_name, limit=10):
-    user_searches = searches.find({'user': user_name}).limit(int(limit))
+    user_searches = searches.find({'user': user_name}).sort([("_id", -1)]).limit(limit)
     result = {'searches': []}
     result['user']= user_name
     for search in user_searches:
         result['searches'].append({'query': search['query'], 'created_on': search['on']})
 
     return jsonify(**result)
+
+@app.route('/users/')
 
 
 # special file handlers and error handlers

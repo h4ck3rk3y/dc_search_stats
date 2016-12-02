@@ -20,11 +20,11 @@ function SearchController($scope, Search, $timeout){
 	function tick(){
 		var searchQuery = Search.get({}, function(search){
 			$scope.search=search;
-			timer = $timeout(tick, 2000);
+			timer = $timeout(tick, 500);
 		});
 	};
 
-	var timer = $timeout(tick, 2000);
+	var timer = $timeout(tick, 500);
 
 
     $scope.$on("$destroy", function() {

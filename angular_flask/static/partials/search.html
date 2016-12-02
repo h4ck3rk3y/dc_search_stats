@@ -1,3 +1,3 @@
 <div>
-	<h4><a href="/user/{{ search.user}}">{{search.user}}</a> {{search.query}} {{search.created_on}}</h4>
+	<div align="center" style="top: 50%; left: 50%; transform: translate(-50%, -50%); position: fixed;"><a href="/user/{{ search.user}}"><font face="roboto" size="5"><i>{{search.user}}</i></a><i> searched for </i><b>{{search.query}}</b><i> on</i> <i>{{search.created_on | clean_date}}</i></font></div>
 </div>

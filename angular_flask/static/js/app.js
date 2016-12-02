@@ -5,8 +5,8 @@ angular.module('AngularFlask', ['angularFlaskServices'])
 		function($routeProvider, $locationProvider) {
 		$routeProvider
 		.when('/', {
-			templateUrl: 'static/partials/landing.html',
-			controller: IndexController
+			templateUrl: 'static/partials/search.html',
+			controller: SearchController
 		})
 		.when('/search', {
 			templateUrl: 'static/partials/search.html',
@@ -18,7 +18,7 @@ angular.module('AngularFlask', ['angularFlaskServices'])
 			controller: SearchController
 		})
 		.when('/user/:user',{
-			templateUrl: '/static/partials/user-list.html',
+			templateUrl: '/static/partials/search-list.html',
 			controller: UserController
 		})
 		.otherwise({
@@ -28,4 +28,8 @@ angular.module('AngularFlask', ['angularFlaskServices'])
 
 		$locationProvider.html5Mode(true);
 	}])
-;
+	.filter('clean_date', function() {
+	return function(input) {
+		return input.replace('GMT', '');
+	}
+});

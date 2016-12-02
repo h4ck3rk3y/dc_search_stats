@@ -13,21 +13,24 @@
 	<script src="/static/js/app.js"></script>
 	<script src="/static/js/controllers.js"></script>
  	<script src="/static/js/services.js"></script>
+ 	<script src="/static/js/filters.js"></script>
 
 	<script src="/static/lib/jquery/jquery.min.js"></script>
 	<script src="/static/lib/bootstrap/bootstrap.min.js"></script>
+
 </head>
 <body>
 	<div id="header" class="header navbar navbar-static-top">
-		<div class="navbar-inner">
+		<div class="navbar">
 			<div class="container">
-				<button type="button" class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
-				</button>
-				<a class="brand" href="/">AngularFlask</a>
+				<a class="brand" href="/"><h1>DCWatch</h1></a>
 				<div class="nav-collapse collapse">
 					<ul class="nav pull-right">
 						<li class="">
 							<a href="/">Home</a>
+						</li>
+						<li cass="">
+							<a href="/users">Users</a>
 						</li>
 					</ul>
 				</div>
@@ -38,16 +41,6 @@
 		<div id="content" class="container main" ng-view>
 		</div>
 
-		<hr>
-		<footer id="footer" class="footer">
-			<div class="footer-left">
-				<a href="/about">About</a> |
-				<a href="/">Home</a>
-			</div>
-			<div class="footer-right">
-				<span>&copy; 2013 AngularFlask</span>
-			</div>
-		</footer>
 	</div>
 </body>
 </html>
