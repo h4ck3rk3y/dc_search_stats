@@ -12,12 +12,27 @@ function AboutController($scope) {
 
 function SearchController($scope, Search, $timeout){
 
-	(function tick(){
+	var searchQuery = Search.get({}, function(search){
+		$scope.search=search;
+	});
+
+
+	function tick(){
 		var searchQuery = Search.get({}, function(search){
 			$scope.search=search;
-			$timeout(tick, 5000);
+			timer = $timeout(tick, 2000);
 		});
-	})();
+	};
+
+	var timer = $timeout(tick, 2000);
+
+
+    $scope.$on("$destroy", function() {
+        if (timer) {
+            $timeout.cancel(timer);
+        }
+    });
+
 }
 
 function UserController($scope, $routeParams, User)
