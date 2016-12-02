@@ -1,0 +1,26 @@
+<style>
+	.fancy-ul {
+	  list-style: none;
+	  padding: 0;
+	  width: 500px;
+	  margin: 0 auto;
+	  margin-bottom: 30px;
+	}
+
+	.fancy-li {
+	  width: 500px;
+	  background-color: white;
+	  border-radius: 3px;
+	  color: #444;
+	  line-height: 2rem;
+	  margin-top: 20px;
+	  text-align: center;
+
+	}
+</style>
+
+<h2 align="center"><font face="roboto">{{queries.user}}'s last {{queries.count}} searches</font></h2>
+
+<ul class="fancy-ul">
+	<li class="fancy-li" ng-repeat="query in queries.searches"><font face="roboto" size="5"> <b>{{query.query}}</b> <i>on</i> {{query.created_on | clean_date }}</font> </li>
+</ul>
