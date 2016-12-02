@@ -19,8 +19,14 @@
 	}
 </style>
 
-<h2 align="center">{{queries.user}}'s last 10 searches</h2>
+<h2 align="center">{{user_list.count}} users observed in total</h2>
+
+<br>
+<input ng-model="username" style="left: 50%; transform: translate(-50%, -50%); position: relative;">
+<br>
 
 <ul class="fancy-ul">
-	<li class="fancy-li" ng-repeat="query in queries.searches"><b>{{query.created_on | clean_date }}</b> {{query.query}} </li>
+	<li class="fancy-li" ng-repeat="user in user_list.users| filter: username" ng-hide="">
+		<b><a href="/user/{{user}}">{{user}}</a></b>
+	</li>
 </ul>

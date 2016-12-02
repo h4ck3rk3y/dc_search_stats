@@ -21,6 +21,8 @@ from angular_flask.core import api_manager
 @app.route('/search')
 @app.route('/user')
 @app.route('/user/<user_name>')
+@app.route('/userslist')
+@app.route('/random')
 def basic_pages(**kwargs):
     return make_response(open('angular_flask/templates/index.html').read())
 
@@ -47,10 +49,24 @@ def user_search(user_name, limit=10):
     for search in user_searches:
         result['searches'].append({'query': search['query'], 'created_on': search['on']})
 
+    result['count'] = len(result['searches'])
+
     return jsonify(**result)
 
-@app.route('/users/')
+@app.route('/api/users')
+@app.route('/api/users/<limit>')
+def user_list(limit=False):
+    user_list = searches.distinct("user")
+    if limit:
+        try:
+            user_list = user_list[:int(limit)]
+        except:
+            pass
+    result = {}
+    result['users'] = sorted(user_list, reverse=True)
+    result['count'] = len(result['users'])
 
+    return jsonify(**result)
 
 # special file handlers and error handlers
 @app.route('/favicon.ico')
