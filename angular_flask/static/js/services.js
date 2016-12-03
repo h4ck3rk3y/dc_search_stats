@@ -8,6 +8,13 @@ angular.module('angularFlaskServices', ['ngResource'])
 			}
 		})
 	})
+	.factory('Charts', function($resource){
+		return $resource('/api/charts', {}, {
+			query: {
+				method: 'GET',
+			}
+		})
+	})
 	.factory('RandomSearch', function($resource){
 		return $resource('/api/search/random', {}, {
 			query: {

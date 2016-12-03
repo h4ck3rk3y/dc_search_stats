@@ -1,12 +1,15 @@
 'use strict';
 
-angular.module('AngularFlask', ['angularFlaskServices'])
-	.config(['$routeProvider', '$locationProvider',
-		function($routeProvider, $locationProvider) {
+angular.module('AngularFlask', ['angularFlaskServices', "chart.js", "ngRoute"])
+	.config(function($routeProvider) {
 		$routeProvider
 		.when('/', {
 			templateUrl: 'static/partials/search.html',
 			controller: SearchController
+		})
+		.when('/charts', {
+			templateUrl: '/static/partials/charts.html',
+			controller: ChartsController
 		})
 		.when('/search', {
 			templateUrl: 'static/partials/search.html',
@@ -34,8 +37,8 @@ angular.module('AngularFlask', ['angularFlaskServices'])
 		})
 		;
 
-		$locationProvider.html5Mode(true);
-	}])
+		// $locationProvider.html5Mode(true);
+	})
 	.filter('clean_date', function() {
 	return function(input) {
 		return input.replace('GMT', '');

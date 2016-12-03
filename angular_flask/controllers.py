@@ -7,7 +7,10 @@ from flask import jsonify
 
 from angular_flask import app
 
-from db_connection import searches
+from db_connection import db
+
+searches = db.searches
+chart_data = db.charts
 
 from random import randint
 
@@ -23,6 +26,7 @@ from angular_flask.core import api_manager
 @app.route('/user/<user_name>')
 @app.route('/userslist')
 @app.route('/random')
+@app.route('/charts')
 def basic_pages(**kwargs):
     return make_response(open('angular_flask/templates/index.html').read())
 
@@ -33,6 +37,27 @@ def search_random():
     search = searches.find().limit(-1).skip(random_number).next()
     search = {'user': search['user'], 'created_on': search['on'], 'query': search['query']}
     return jsonify(**search)
+
+
+@app.route('/api/charts')
+def charts():
+    values = []
+    total = 0
+
+    for i in range(1, 12):
+        try:
+            value = chart_data.find_one({"_id": i})["values"]
+        except:
+            values.append(value)
+
+        total += value
+
+    data = {
+        "arr": values,
+        "total": total
+    }
+    return jsonify(**data)
+
 
 @app.route('/api/search')
 def search():
