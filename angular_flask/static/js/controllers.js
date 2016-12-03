@@ -61,6 +61,22 @@ function RandomSearchController($scope, RandomSearch, $timeout){
 }
 
 
+function ReverseQueryController($scope, Query)
+{
+	$scope.$watch("query", function(){
+		if($scope.query!=undefined && $scope.query.length >= 2){
+			var reverseQueries = Query.get({query: $scope.query}, function(matches){
+				$scope.matches = matches;
+			});
+		}
+
+		if($scope.query == '')
+		{
+			$scope.matches = undefined;
+		}
+	}, true);
+}
+
 function UserController($scope, $routeParams, User)
 {
 	var userQueries = User.get({user: $routeParams.user}, function(queries)

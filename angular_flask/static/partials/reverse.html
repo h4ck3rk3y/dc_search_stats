@@ -1,0 +1,34 @@
+<style>
+	.fancy-ul {
+	  list-style: none;
+	  padding: 0;
+	  width: 500px;
+	  margin: 0 auto;
+	  margin-bottom: 30px;
+	}
+
+	.fancy-li {
+	  width: 500px;
+	  background-color: white;
+	  border-radius: 3px;
+	  color: #444;
+	  line-height: 2rem;
+	  margin-top: 20px;
+	  text-align: center;
+
+	}
+</style>
+
+<br>
+<br>
+<br>
+<input ng-model="query" style="left: 50%; transform: translate(-50%, -50%); position: relative;" placeholder="Enter The Query">
+<br>
+
+<h5 ng-show="matches.count > 0" align="center"><font face="roboto" size="3">{{matches.count}} results found</font></h5>
+
+<ul class="fancy-ul">
+	<li class="fancy-li" ng-repeat="match in matches.matches" ng-hide="">
+		<font face="roboto" size="3"><b><a href="/user/{{match.user}}">{{match.user}}</a>  {{match.query}}</b></font>
+	</li>
+</ul>

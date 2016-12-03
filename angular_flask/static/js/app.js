@@ -29,6 +29,10 @@ angular.module('AngularFlask', ['angularFlaskServices'])
 			templateUrl: '/static/partials/search.html',
 			controller: RandomSearchController
 		})
+		.when('/reverse_search',{
+			templateUrl: '/static/partials/reverse.html',
+			controller: ReverseQueryController
+		})
 		.otherwise({
 			redirectTo: '/'
 		})
