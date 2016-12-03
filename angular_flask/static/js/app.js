@@ -42,6 +42,9 @@ angular.module('AngularFlask', ['angularFlaskServices'])
 	}])
 	.filter('clean_date', function() {
 	return function(input) {
-		return input.replace('GMT', '');
+		if(input != undefined)
+			return input.replace('GMT', '');
+		else
+			return '';
 	}
 });
