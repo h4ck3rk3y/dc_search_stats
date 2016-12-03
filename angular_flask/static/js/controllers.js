@@ -3,11 +3,11 @@
 /* Controllers */
 
 function IndexController($scope) {
-	
+
 }
 
 function AboutController($scope) {
-	
+
 }
 
 function SearchController($scope, Search, $timeout){
@@ -20,11 +20,11 @@ function SearchController($scope, Search, $timeout){
 	function tick(){
 		var searchQuery = Search.get({}, function(search){
 			$scope.search=search;
-			timer = $timeout(tick, 500);
+			timer = $timeout(tick, 2000);
 		});
 	};
 
-	var timer = $timeout(tick, 500);
+	var timer = $timeout(tick, 2000);
 
 
     $scope.$on("$destroy", function() {
@@ -45,11 +45,11 @@ function RandomSearchController($scope, RandomSearch, $timeout){
 	function tick(){
 		var searchQuery = RandomSearch.get({}, function(search){
 			$scope.search=search;
-			timer = $timeout(tick, 500);
+			timer = $timeout(tick, 1000);
 		});
 	};
 
-	var timer = $timeout(tick, 500);
+	var timer = $timeout(tick, 1000);
 
 
     $scope.$on("$destroy", function() {
