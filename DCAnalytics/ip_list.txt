@@ -1,0 +1,29 @@
+++	172.17.
+=======
+Malviya Bhawan     	-1,2,9,10,12,13
+
+Meera Bhawan      	-3,4,5,6,7,8,11
+
+Ashok Bhawan 		-14,15
+
+Bhagirath Bhawan 	-16,17
+
+Budh Bhawan 		-18,19
+
+Gandhi Bhawan 		-20,21
+
+Krishna Bhawan 		-22,23
+
+Ram Bhawan 		-38,39,40
+
+CVR                     -24,25
+
+Ranapratap Bhawan 	-26,27
+
+Shankar Bhawan 		-28,29
+
+Vishwakarma Bhawan 	-30,31
+
+Vyas Bhawan 		-32,33
+
+SR Bhawan          	-34,35,36,37
