@@ -20,11 +20,11 @@ function SearchController($scope, Search, $timeout){
 	function tick(){
 		var searchQuery = Search.get({}, function(search){
 			$scope.search=search;
-			timer = $timeout(tick, 2000);
+			timer = $timeout(tick, 5000);
 		});
 	};
 
-	var timer = $timeout(tick, 2000);
+	var timer = $timeout(tick, 5000);
 
 
     $scope.$on("$destroy", function() {
@@ -60,6 +60,22 @@ function RandomSearchController($scope, RandomSearch, $timeout){
 
 }
 
+
+function ReverseQueryController($scope, Query)
+{
+	$scope.$watch("query", function(){
+		if($scope.query!=undefined && $scope.query.length >= 2){
+			var reverseQueries = Query.get({query: $scope.query}, function(matches){
+				$scope.matches = matches;
+			});
+		}
+
+		if($scope.query == '')
+		{
+			$scope.matches = undefined;
+		}
+	}, true);
+}
 
 function UserController($scope, $routeParams, User)
 {

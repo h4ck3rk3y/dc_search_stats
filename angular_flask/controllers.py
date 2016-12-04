@@ -1,4 +1,5 @@
 import os
+import re
 
 from flask import Flask, request, Response
 from flask import render_template, url_for, redirect, send_from_directory
@@ -23,6 +24,7 @@ from angular_flask.core import api_manager
 @app.route('/user/<user_name>')
 @app.route('/userslist')
 @app.route('/random')
+@app.route('/reverse_search')
 def basic_pages(**kwargs):
     return make_response(open('angular_flask/templates/index.html').read())
 
@@ -67,6 +69,19 @@ def user_list(limit=False):
     result['count'] = len(result['users'])
 
     return jsonify(**result)
+
+@app.route('/api/reverse/<query>')
+def reverse_search(query):
+	regex =  re.compile('.*%s.*'%query, re.IGNORECASE)
+	users = searches.find({'query': regex})
+
+	result = {}
+	result['matches'] = []
+	for user in users:
+		result['matches'].append({'user': user['user'], 'query': user['query']})
+
+	result['count'] = len(result['matches'])
+	return jsonify(**result)
 
 # special file handlers and error handlers
 @app.route('/favicon.ico')

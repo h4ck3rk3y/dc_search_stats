@@ -30,6 +30,14 @@ angular.module('angularFlaskServices', ['ngResource'])
 			}
 		})
 	})
+	.factory('Query', function($resource){
+		return $resource('/api/reverse/:query', {}, {
+			query: {
+				method: 'GET',
+				params: {'query': ''}
+			}
+		})
+	})
 ;
 
 

@@ -29,6 +29,10 @@ angular.module('AngularFlask', ['angularFlaskServices'])
 			templateUrl: '/static/partials/search.html',
 			controller: RandomSearchController
 		})
+		.when('/reverse_search',{
+			templateUrl: '/static/partials/reverse.html',
+			controller: ReverseQueryController
+		})
 		.otherwise({
 			redirectTo: '/'
 		})
@@ -38,6 +42,9 @@ angular.module('AngularFlask', ['angularFlaskServices'])
 	}])
 	.filter('clean_date', function() {
 	return function(input) {
-		return input.replace('GMT', '');
+		if(input != undefined)
+			return input.replace('GMT', '');
+		else
+			return '';
 	}
 });

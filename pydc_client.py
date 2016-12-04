@@ -7,6 +7,13 @@ from datetime import datetime as dt
 # sys.stderr = open("error.txt","w")
 # Nicknames cannot contain spaces
 
+def convert2unicode(mydict):
+    for k, v in mydict.iteritems():
+        if isinstance(v, str):
+            mydict[k] = unicode(v, errors = 'replace')
+        elif isinstance(v, dict):
+            convert2unicode(v)
+
 class pydc_client():
 	help = """pyDC Client Class Documentation : Written by Kaustubh Karkare.
 		The DC Client Class uses the Connection Class to interact with the DC Server.
@@ -849,7 +856,9 @@ class pydc_client():
 			user = user[:user.rfind(':')]
 
 			search_query = file_val[8:].replace("$", " ")
-			searches.insert({'user': user, 'query': search_query, 'on': dt.now()})
+			data = {'user': user, 'query': search_query, 'on': dt.now()}
+			convert2unicode(data)
+			searches.insert(data)
 
 		info = None # Represents that the search pattern is as of now, unrecognized
 		if info is None: # Active Mode Search
