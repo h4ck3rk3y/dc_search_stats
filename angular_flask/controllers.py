@@ -31,13 +31,13 @@ def search_random():
     count = searches.count()
     random_number = randint(0, count-1)
     search = searches.find().limit(-1).skip(random_number).next()
-    search = {'user': search['user'], 'created_on': search['on'], 'query': search['query']}
+    search = {'user': search['user'], 'created_on': search['on'], 'query': search['query'], 'status': 'success'}
     return jsonify(**search)
 
 @app.route('/api/search')
 def search():
     search = searches.find().sort([("_id", -1)])[0]
-    search = {'user': search['user'], 'created_on': search['on'], 'query': search['query']}
+    search = {'user': search['user'], 'created_on': search['on'], 'query': search['query'], 'status': 'success'}
     return jsonify(**search)
 
 @app.route('/api/search/<user_name>')
@@ -50,7 +50,7 @@ def user_search(user_name, limit=10):
         result['searches'].append({'query': search['query'], 'created_on': search['on']})
 
     result['count'] = len(result['searches'])
-
+    result['status'] = 'success'
     return jsonify(**result)
 
 @app.route('/api/users')
@@ -65,7 +65,7 @@ def user_list(limit=False):
     result = {}
     result['users'] = sorted(user_list, reverse=True)
     result['count'] = len(result['users'])
-
+    result['status'] = 'success'
     return jsonify(**result)
 
 # special file handlers and error handlers
